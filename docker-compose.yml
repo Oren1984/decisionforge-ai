@@ -1,0 +1,42 @@
+# Default:        docker compose up --build                   (rules and mock modes)
+# With Ollama:    docker compose --profile ollama up --build  (adds the local model runtime)
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      # Resolves only when the ollama profile is running. Otherwise ollama mode
+      # abstains to HUMAN_REVIEW and the other modes are unaffected.
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3.2:1b}
+      # CPU-only inference in a container is slow: 17 s to over 60 s per call was
+      # measured for llama3.2:1b. The backend's own default is 5000.
+      OLLAMA_TIMEOUT_MS: ${OLLAMA_TIMEOUT_MS:-60000}
+
+  frontend:
+    build:
+      context: frontend
+    ports:
+      - "8501:8501"
+    environment:
+      BACKEND_URL: http://backend:3000
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  # Optional. Model weights are not bundled; pull them once with:
+  #   docker compose exec ollama ollama pull llama3.2:1b
+  ollama:
+    image: ollama/ollama
+    profiles: ["ollama"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+volumes:
+  ollama_data:

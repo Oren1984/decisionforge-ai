@@ -1,0 +1,28 @@
+{
+  "name": "decisionforge-ai",
+  "version": "0.1.0",
+  "description": "Strongly-typed local decision intelligence POC: typed decision contracts and deterministic policy gates around AI inference.",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json",
+    "start": "node dist/api/server.js",
+    "generate:scenarios": "npm run build && node dist/evaluation/generateScenarios.js",
+    "evaluate": "npm run build && node dist/evaluation/cli.js",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "fastify": "^5.12.5",
+    "zod": "^4.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
+  }
+}

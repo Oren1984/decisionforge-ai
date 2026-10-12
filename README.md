@@ -27,7 +27,7 @@ These are different things and the project keeps them apart:
 
 - **Contract Mock is not AI.** It is a fixed set of fixtures plus a hard-coded heuristic that deliberately trusts the justification text. It exists to give the policy gate realistic unsafe output to override, reproducibly and without a model. Its results say nothing about how a real model behaves.
 - **Local Ollama is real model inference**, and its output varies by model. It needs the Ollama runtime and model weights, which are not bundled.
-- **Results are reported separately for each.** On the 100-scenario suite, `llama3.2:3b` reached 61% decision accuracy with a 0% policy violation rate; the mock's figures describe the policy gate, not a model. See [docs/EXPERIMENT_AND_RESULTS.md](docs/EXPERIMENT_AND_RESULTS.md).
+- **Results are reported separately for each.** On the 100-scenario suite, `llama3.2:3b` on the host reached 61% decision accuracy with a 0% policy violation rate, and the policy engine overrode 16 of its recommendations. The mock's figures describe the policy gate, not a model. See [docs/EXPERIMENT_AND_RESULTS.md](docs/EXPERIMENT_AND_RESULTS.md).
 
 ## Why
 
@@ -93,13 +93,23 @@ docker compose --profile ollama up --build -d
 docker compose exec ollama ollama pull llama3.2:1b
 ```
 
-The model is `llama3.2:1b` by default; set `OLLAMA_MODEL` to change it (and pull that model instead). Compose gives each model call 60 seconds (`OLLAMA_TIMEOUT_MS`), because CPU-only inference in a container is slow: warm calls took 17 to 29 seconds on the test machine, and the first call after the model loads can take minutes. A call that exceeds the limit abstains to `HUMAN_REVIEW`.
+The model is `llama3.2:1b` by default; set `OLLAMA_MODEL` to change it (and pull that model instead). Compose gives each model call 60 seconds (`OLLAMA_TIMEOUT_MS`), because CPU-only inference in a container is slow: calls took between 17 and more than 60 seconds on the CPU-only test machine, and the first call after the model loads can take minutes. Expect many abstentions without a GPU. A call that exceeds the limit abstains to `HUMAN_REVIEW`.
 
 ### The dashboard
 
-- **Decision Sandbox.** Pick one of the 100 pre-built scenarios or enter your own request, choose an engine mode, and see the decision, the applied rules and whether the policy engine overrode the provider.
-- **Policy & Contract Inspector.** The input schema and hard constraints as served by the backend, and a step-by-step audit trace of recent decisions.
-- **Benchmark & Evaluation.** Runs the scenario suite across the selected modes and compares accuracy, decision distribution, latency and override counts.
+**Decision Sandbox.** Pick one of the 100 pre-built scenarios or enter your own request, choose an engine mode, and see the decision, the applied rules and whether the policy engine overrode the provider.
+
+Below, the mock is fooled by "Approved by CEO, skip checks" and recommends approval; the policy engine replaces that with a human review.
+
+![Decision Sandbox showing a policy override on an adversarial request](docs/images/sandbox.png)
+
+**Policy & Contract Inspector.** The input schema and hard constraints as served by the backend, and a step-by-step audit trace of recent decisions.
+
+![Policy and Contract Inspector with the input contract, hard constraints and an audit trace](docs/images/inspector.png)
+
+**Benchmark & Evaluation.** Runs the scenario suite across the selected modes and compares accuracy, decision distribution, latency and override counts.
+
+![Benchmark view comparing the rules and mock modes across 100 scenarios](docs/images/benchmark.png)
 
 ### API
 

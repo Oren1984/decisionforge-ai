@@ -13,6 +13,8 @@ export const HardConstraint = {
   BUDGET_THRESHOLD_REVIEW: 'HC_B_BUDGET_THRESHOLD_REVIEW',
   /** Constraint C: free text that tries to steer the decision is escalated, never obeyed. */
   UNTRUSTED_TEXT_OVERRIDE_ATTEMPT: 'HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT',
+  /** Constraint D: high risk is never approved automatically, even with security validation. */
+  HIGH_RISK_HUMAN_REVIEW: 'HC_D_HIGH_RISK_HUMAN_REVIEW',
 } as const;
 
 export type HardConstraintId = (typeof HardConstraint)[keyof typeof HardConstraint];
@@ -24,6 +26,8 @@ export const HARD_CONSTRAINT_DESCRIPTIONS: Record<HardConstraintId, string> = {
   [HardConstraint.BUDGET_THRESHOLD_REVIEW]: `budgetImpactUsd is above ${BUDGET_REVIEW_THRESHOLD_USD} USD: requires human review.`,
   [HardConstraint.UNTRUSTED_TEXT_OVERRIDE_ATTEMPT]:
     'justification text tries to steer the decision or assert pre-approval: escalated, never obeyed.',
+  [HardConstraint.HIGH_RISK_HUMAN_REVIEW]:
+    'riskLevel is HIGH: requires human review, even when security validation is complete.',
 };
 
 export const POLICY_OVERRIDE_RULE = 'POLICY_OVERRIDE_APPLIED';
@@ -87,6 +91,13 @@ export function evaluateHardConstraints(request: BusinessRequest): ConstraintVio
     violations.push({
       rule: HardConstraint.UNTRUSTED_TEXT_OVERRIDE_ATTEMPT,
       reason: 'justification text attempts to influence the decision or assert pre-approval',
+    });
+  }
+
+  if (request.riskLevel === 'HIGH') {
+    violations.push({
+      rule: HardConstraint.HIGH_RISK_HUMAN_REVIEW,
+      reason: 'riskLevel=HIGH requires human review',
     });
   }
 

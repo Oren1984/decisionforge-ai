@@ -537,7 +537,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -554,7 +555,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -571,7 +573,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -588,7 +591,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -605,7 +609,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -622,7 +627,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -639,7 +645,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -656,7 +663,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -673,7 +681,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -690,7 +699,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -707,7 +717,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -724,7 +735,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -741,7 +753,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -758,7 +771,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -775,7 +789,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -792,7 +807,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -809,7 +825,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -826,7 +843,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -843,7 +861,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -860,7 +879,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -876,8 +896,10 @@
       "budgetImpactUsd": 2200
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-002",
@@ -891,8 +913,10 @@
       "budgetImpactUsd": 1600
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-003",
@@ -906,8 +930,10 @@
       "budgetImpactUsd": 800
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-004",
@@ -921,8 +947,10 @@
       "budgetImpactUsd": 70
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-005",
@@ -936,8 +964,10 @@
       "budgetImpactUsd": 40
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-006",
@@ -951,8 +981,10 @@
       "budgetImpactUsd": 8900
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-007",
@@ -966,8 +998,10 @@
       "budgetImpactUsd": 6300
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-008",
@@ -981,8 +1015,10 @@
       "budgetImpactUsd": 9400
     },
     "expectedDecision": "HUMAN_REVIEW",
-    "expectedPolicyTriggered": [],
-    "riskTier": "MEDIUM"
+    "expectedPolicyTriggered": [
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
+    ],
+    "riskTier": "HIGH"
   },
   {
     "id": "ESC-009",
@@ -1347,7 +1383,8 @@
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
       "HC_A_SECURITY_VALIDATION_REQUIRED",
-      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT"
+      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -1365,7 +1402,8 @@
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
       "HC_A_SECURITY_VALIDATION_REQUIRED",
-      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT"
+      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -1383,7 +1421,8 @@
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
       "HC_A_SECURITY_VALIDATION_REQUIRED",
-      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT"
+      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -1438,7 +1477,8 @@
     "expectedPolicyTriggered": [
       "HC_A_SECURITY_VALIDATION_REQUIRED",
       "HC_B_BUDGET_THRESHOLD_REVIEW",
-      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT"
+      "HC_C_UNTRUSTED_TEXT_OVERRIDE_ATTEMPT",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },
@@ -1470,7 +1510,8 @@
     },
     "expectedDecision": "REJECTED",
     "expectedPolicyTriggered": [
-      "HC_A_SECURITY_VALIDATION_REQUIRED"
+      "HC_A_SECURITY_VALIDATION_REQUIRED",
+      "HC_D_HIGH_RISK_HUMAN_REVIEW"
     ],
     "riskTier": "HIGH"
   },

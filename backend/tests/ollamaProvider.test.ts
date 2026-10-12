@@ -142,7 +142,10 @@ describe('Ollama failures through executeDecision', () => {
     expect(result.providerUsed).toBe('LOCAL_OLLAMA');
     expect(trace.providerDecision).toBe('APPROVED');
     expect(trace.policyOverridden).toBe(true);
-    expect(trace.violatedConstraints).toEqual([HardConstraint.SECURITY_VALIDATION_REQUIRED]);
+    expect(trace.violatedConstraints).toEqual([
+      HardConstraint.SECURITY_VALIDATION_REQUIRED,
+      HardConstraint.HIGH_RISK_HUMAN_REVIEW,
+    ]);
   });
 });
 

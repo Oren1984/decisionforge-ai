@@ -7,7 +7,6 @@ import type { DecisionProvider } from './decisionProvider.js';
 
 export const BusinessRule = {
   UNVALIDATED_HIGH_RISK_REJECTED: 'RULE_UNVALIDATED_HIGH_RISK_REJECTED',
-  HIGH_RISK_REQUIRES_REVIEW: 'RULE_HIGH_RISK_REQUIRES_REVIEW',
   UNVALIDATED_MEDIUM_RISK_REVIEW: 'RULE_UNVALIDATED_MEDIUM_RISK_REVIEW',
   STANDARD_AUTO_APPROVAL: 'RULE_STANDARD_AUTO_APPROVAL',
 } as const;
@@ -35,15 +34,6 @@ export class RuleBasedProvider implements DecisionProvider {
         confidenceScore: 1,
         appliedPolicyRules: violatedRules,
         rationale: `Escalated to human review: ${violations.map((violation) => violation.reason).join('; ')}.`,
-      };
-    }
-
-    if (request.riskLevel === 'HIGH') {
-      return {
-        decision: 'HUMAN_REVIEW',
-        confidenceScore: 1,
-        appliedPolicyRules: [BusinessRule.HIGH_RISK_REQUIRES_REVIEW],
-        rationale: 'High-risk requests require human review even when security validation is complete.',
       };
     }
 

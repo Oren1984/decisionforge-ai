@@ -19,7 +19,10 @@ describe('evaluateHardConstraints', () => {
   describe('Constraint A: security validation', () => {
     it('triggers for HIGH risk without security validation', () => {
       const request = buildRequest({ riskLevel: 'HIGH', securityValidationCompleted: false });
-      expect(violatedRules(request)).toEqual([HardConstraint.SECURITY_VALIDATION_REQUIRED]);
+      expect(violatedRules(request)).toEqual([
+        HardConstraint.SECURITY_VALIDATION_REQUIRED,
+        HardConstraint.HIGH_RISK_HUMAN_REVIEW,
+      ]);
     });
 
     it('triggers for CRITICAL urgency without security validation', () => {
@@ -28,7 +31,7 @@ describe('evaluateHardConstraints', () => {
     });
 
     it('does not trigger once security validation is complete', () => {
-      const request = buildRequest({ riskLevel: 'HIGH', urgency: 'CRITICAL' });
+      const request = buildRequest({ riskLevel: 'MEDIUM', urgency: 'CRITICAL' });
       expect(violatedRules(request)).toEqual([]);
     });
 
@@ -53,6 +56,22 @@ describe('evaluateHardConstraints', () => {
     });
   });
 
+  describe('Constraint D: high risk', () => {
+    it('triggers for HIGH risk even when security validation is complete', () => {
+      const request = buildRequest({ riskLevel: 'HIGH', securityValidationCompleted: true });
+      expect(violatedRules(request)).toEqual([HardConstraint.HIGH_RISK_HUMAN_REVIEW]);
+    });
+
+    it.each(['LOW', 'MEDIUM'] as const)('does not trigger for %s risk', (riskLevel) => {
+      expect(violatedRules(buildRequest({ riskLevel }))).toEqual([]);
+    });
+
+    it('does not make unvalidated medium risk a hard constraint', () => {
+      const request = buildRequest({ riskLevel: 'MEDIUM', securityValidationCompleted: false });
+      expect(violatedRules(request)).toEqual([]);
+    });
+  });
+
   it('reports every violated constraint', () => {
     const request = buildRequest({
       riskLevel: 'HIGH',
@@ -64,6 +83,7 @@ describe('evaluateHardConstraints', () => {
       HardConstraint.SECURITY_VALIDATION_REQUIRED,
       HardConstraint.BUDGET_THRESHOLD_REVIEW,
       HardConstraint.UNTRUSTED_TEXT_OVERRIDE_ATTEMPT,
+      HardConstraint.HIGH_RISK_HUMAN_REVIEW,
     ]);
   });
 });
@@ -79,8 +99,9 @@ describe('enforcePolicy', () => {
   });
 
   it.each([
-    ['Constraint A', { riskLevel: 'HIGH', securityValidationCompleted: false }, HardConstraint.SECURITY_VALIDATION_REQUIRED],
+    ['Constraint A', { urgency: 'CRITICAL', securityValidationCompleted: false }, HardConstraint.SECURITY_VALIDATION_REQUIRED],
     ['Constraint B', { budgetImpactUsd: 10_001 }, HardConstraint.BUDGET_THRESHOLD_REVIEW],
+    ['Constraint D', { riskLevel: 'HIGH' }, HardConstraint.HIGH_RISK_HUMAN_REVIEW],
   ] as const)('overrides an APPROVED recommendation that violates %s', (_label, overrides, rule) => {
     const recommendation = buildRecommendation({ decision: 'APPROVED', confidenceScore: 0.99 });
     const enforced = enforcePolicy(buildRequest(overrides), recommendation);

@@ -27,6 +27,7 @@ describe('RuleBasedProvider', () => {
     expect(recommendation.decision).toBe('REJECTED');
     expect(recommendation.appliedPolicyRules).toEqual([
       HardConstraint.SECURITY_VALIDATION_REQUIRED,
+      HardConstraint.HIGH_RISK_HUMAN_REVIEW,
       BusinessRule.UNVALIDATED_HIGH_RISK_REJECTED,
     ]);
   });
@@ -34,7 +35,7 @@ describe('RuleBasedProvider', () => {
   it.each([
     ['critical urgency without security validation', { urgency: 'CRITICAL', securityValidationCompleted: false }, HardConstraint.SECURITY_VALIDATION_REQUIRED],
     ['budget above the threshold', { budgetImpactUsd: 10_001 }, HardConstraint.BUDGET_THRESHOLD_REVIEW],
-    ['validated high risk', { riskLevel: 'HIGH' }, BusinessRule.HIGH_RISK_REQUIRES_REVIEW],
+    ['validated high risk', { riskLevel: 'HIGH' }, HardConstraint.HIGH_RISK_HUMAN_REVIEW],
     ['unvalidated medium risk', { riskLevel: 'MEDIUM', securityValidationCompleted: false }, BusinessRule.UNVALIDATED_MEDIUM_RISK_REVIEW],
   ] as const)('escalates %s to human review', async (_label, overrides, rule) => {
     const recommendation = await provider.decide(buildRequest(overrides));
@@ -147,7 +148,7 @@ describe('executeDecision', () => {
 
   describe('policy overrides provider recommendations', () => {
     it.each([
-      ['unvalidated high risk', { riskLevel: 'HIGH', securityValidationCompleted: false }, HardConstraint.SECURITY_VALIDATION_REQUIRED],
+      ['validated high risk', { riskLevel: 'HIGH' }, HardConstraint.HIGH_RISK_HUMAN_REVIEW],
       ['unvalidated critical urgency', { urgency: 'CRITICAL', securityValidationCompleted: false }, HardConstraint.SECURITY_VALIDATION_REQUIRED],
       ['budget above the threshold', { budgetImpactUsd: 250_000 }, HardConstraint.BUDGET_THRESHOLD_REVIEW],
     ] as const)('for %s', async (_label, overrides, rule) => {

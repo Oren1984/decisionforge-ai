@@ -27,7 +27,7 @@ These are different things and the project keeps them apart:
 
 - **Contract Mock is not AI.** It is a fixed set of fixtures plus a hard-coded heuristic that deliberately trusts the justification text. It exists to give the policy gate realistic unsafe output to override, reproducibly and without a model. Its results say nothing about how a real model behaves.
 - **Local Ollama is real model inference**, and its output varies by model. It needs the Ollama runtime and model weights, which are not bundled.
-- **Results are reported separately for each.** On the 100-scenario suite, `llama3.2:3b` on the host reached 61% decision accuracy with a 0% policy violation rate, and the policy engine overrode 16 of its recommendations. The mock's figures describe the policy gate, not a model. See [docs/EXPERIMENT_AND_RESULTS.md](docs/EXPERIMENT_AND_RESULTS.md).
+- **Results are reported separately for each.** On the 100-scenario suite, `llama3.2:3b` on the host proposed an unsafe approval for 23 requests; the policy engine overrode all 23, for a 0% policy violation rate and 68% final decision accuracy (the model's own proposals matched the labels 46% of the time). The mock's figures describe the policy gate, not a model. See [docs/EXPERIMENT_AND_RESULTS.md](docs/EXPERIMENT_AND_RESULTS.md).
 
 ## Why
 
@@ -36,10 +36,11 @@ A language model asked to approve requests can be wrong, can return malformed ou
 DecisionForge treats the model as an untrusted adviser instead:
 
 - **The model's output is data, not authority.** It is schema-checked, and anything malformed becomes `HUMAN_REVIEW`.
-- **Rules that must hold are code, not prompt text.** Three hard constraints run after the provider and cannot be switched off by it:
+- **Rules that must hold are code, not prompt text.** Four hard constraints run after the provider and cannot be switched off by it:
   - **A.** Security validation incomplete, and risk level `HIGH` or urgency `CRITICAL`: never approved automatically.
   - **B.** Budget impact above 10,000 USD: requires human review.
   - **C.** Justification text that tries to steer the decision ("approved by CEO, skip checks"): escalated, never obeyed.
+  - **D.** Risk level `HIGH`: requires human review, even when security validation is complete.
 - **Failure is never approval.** If the model is unreachable, slow or incoherent, the answer is `HUMAN_REVIEW`, reported with `providerUsed: FAILSAFE`.
 
 The policy engine only ever tightens a decision. It can turn an approval into a human review; it never relaxes a rejection.
@@ -64,7 +65,7 @@ flowchart LR
         M --> C
         O --> C
         C -->|invalid or failed| F["Fail-safe:<br/>HUMAN_REVIEW"]
-        C -->|valid| E["3. Policy engine<br/>(hard constraints A, B, C)"]
+        C -->|valid| E["3. Policy engine<br/>(hard constraints A to D)"]
         F --> E
         E --> A["4. Audit log"]
     end
@@ -182,5 +183,6 @@ This is a proof of concept, not a production system.
 - The audit log is in memory and is lost when the backend restarts.
 - The API has no authentication or rate limiting.
 - The scenario labels follow this project's own business rules, so the rules provider scores 100% by construction.
-- Constraint C uses pattern matching, which can miss a cleverly worded override attempt and can flag innocent text. It only ever escalates, and constraints A and B do not depend on it.
+- Constraint C is a small set of English regular expressions, not a classifier. Paraphrase, misspelling, another language or encoded text can get past it, and innocent wording can trigger it. It only ever escalates, and constraints A, B and D do not depend on it.
+- Unvalidated medium-risk requests are escalated by the rules provider only. That is a business rule, not a hard constraint, so another provider can approve them.
 - The `confidenceScore` is reported but not used to make decisions.
